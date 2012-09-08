@@ -50,13 +50,13 @@ function tffaq_register_js(){	// always and them to the footer unless there is a
 
 	wp_register_script( 'tffaq_jquery_cookie', plugins_url( 'js/jquery.cookie.js' , __FILE__ ),array('jquery-ui-tabs'),'',1);
 	wp_register_script( 'tffaq_frontend', plugins_url( 'js/tffaq-frontend.js' , __FILE__ ),array('jquery-ui-tabs'),'',1 );
-	wp_register_script('tffaq_validation', plugins_url('/js/jquery.validate.js', __FILE__), array('jquery'),'1.8.1',1);
+	wp_register_script('tffaq_validation', plugins_url('js/jquery.validate.js', __FILE__), array('jquery'),'1.8.1',1);
 
-/*	currently tffaq_validation_extra is not being used so we'll comment it out.
-	wp_register_script('tffaq_validation_extra', plugins_url('/js/additional-methods.js', __FILE__), array('jquery','tffaq_validation'),'1.8.1',1);
-*/
+	//currently tffaq_validation_extra is not being used so we'll comment it out.
+	wp_register_script('tffaq_validation_extra', plugins_url('js/additional-methods.js', __FILE__), array('jquery','tffaq_validation'),'1.8.1',1);
 
-	wp_register_script('tffaq_valid_question', plugins_url('/js/tffaq-valid-question.js', __FILE__), array('jquery','tffaq_validation'),'0.0.1', 1);
+
+	wp_register_script('tffaq_valid_question', plugins_url('js/tffaq-valid-question.js', __FILE__), array('jquery','tffaq_validation'),'0.0.1', 1);
 
 }
 add_action('init','tffaq_register_js');
@@ -68,7 +68,7 @@ add_action('init','tffaq_register_js');
 function tffaq_show($questions) {
 	$new_content = '';
 		foreach($questions as $question) {
-			$new_content .= '<p class="tffaq-question" id="tffaq-question-'.$question->id.'"><a style="cursor: pointer;" data-options=\'{"id":'.$question->id.'}\' >'.$question->question.'</a></p>';
+			$new_content .= '<p id="tffaq-question-'.$question->id.'"><a class="tffaq-question" style="cursor: pointer;" data-options=\'{"id":'.$question->id.'}\' >'.$question->question.'</a></p>';
 			$new_content .= '<p class="tffaq-answer sticky" id="tffaq-answer-'.$question->id.'" style="display: none;"> '.$question->answer.' </p>';
 	}
 	return $new_content;
